@@ -1,0 +1,38 @@
+# Example configuration for agent-steward-kit
+# Point STEWARD_CONFIG=/path/to/steward.toml or pass --config steward.toml
+
+[vault]
+# Optional explicit vault root; otherwise scans STEWARD_VAULT_ROOT, home candidates, and drive letters.
+root = "~/Documents/Obsidian Vault"
+env_var = "STEWARD_VAULT_ROOT"
+marker_file = "AGENT_ONBOARDING.md"
+relative_candidates = ["Obsidian Vault", "Documents/Obsidian Vault"]
+drive_letters = ["D", "E", "F", "G", "H", "I"]
+protected_meta_files = ["KNOWLEDGE_INDEX.md", "AGENT_ONBOARDING.md", "TEAM_RULES.md"]
+protected_dirs = [".obsidian", ".trash", ".git"]
+
+[guard]
+# Substrings required in normalized path before applying protected_meta_files block.
+# Leave empty [] to protect matching filenames across all paths.
+scope_substrings = ["obsidian vault", "vault"]
+protected_meta_files = ["KNOWLEDGE_INDEX.md", "AGENT_ONBOARDING.md", "TEAM_RULES.md"]
+
+[queue]
+state_dir = "./.steward_state"
+session_tag = "[STEWARD_CONSOLIDATION_SESSION]"
+min_delta_bytes = 256
+
+[gc]
+ttl_days = 14
+tmp_hours = 24.0
+pycache_days = 7
+large_dir_mb = 500
+scratch_roots = ["./scratch"]
+task_copy_roots = ["./task_copies"]
+pycache_dirs = []
+protected_scratch_names = ["active-workspace"]
+receipt_file = "./.steward_state/last_gc_receipt.json"
+
+[session]
+digest_max_chars = 1750
+pending_items_file = "./.steward_state/pending_items.json"

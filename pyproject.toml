@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-steward-kit"
+version = "0.1.0"
+description = "Zero-dependency config-driven agent steward toolkit: PreToolUse meta-file guard, SessionStart digest hook, atomic consolidation queue, SHA-256 vault sync, and deterministic anti-slop GC."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [{ name = "JakeBilu" }]
+keywords = ["ai-agents", "hooks", "obsidian", "garbage-collection", "atomic-io", "steward"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/JakeBilu/agent-steward-kit"
+Repository = "https://github.com/JakeBilu/agent-steward-kit"
+
+[project.scripts]
+steward-gc = "agent_steward_kit.slop_gc:main"
+steward-queue = "agent_steward_kit.atomic_queue:main"
+steward-pretool-guard = "agent_steward_kit.pre_tool_guard:main"
+steward-session-start = "agent_steward_kit.session_digest:main"
+steward-vault = "agent_steward_kit.vault_sync:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
